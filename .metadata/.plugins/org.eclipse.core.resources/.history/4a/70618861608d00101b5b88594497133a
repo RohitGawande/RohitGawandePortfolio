@@ -1,0 +1,5 @@
+package com.rohitgawande.dao;
+
+public class AdminDAO {
+
+}
