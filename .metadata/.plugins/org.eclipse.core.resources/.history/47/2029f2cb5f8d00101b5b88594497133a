@@ -1,7 +1,5 @@
 package com.rohitgawande.model;
 
-import java.sql.Date;
-
 public class Project {
     private int id;
     private String title;
