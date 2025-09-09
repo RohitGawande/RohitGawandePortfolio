@@ -3,7 +3,6 @@ INDEX VERSION 1.131+C:\Users\Asus\Desktop\MyPortfolio\.metadata\.plugins\org.ecl
 1104051357.index
 1467552050.index
 211620750.index
-829393653.index
 373973507.index
 4038991641.index
 3270615803.index
