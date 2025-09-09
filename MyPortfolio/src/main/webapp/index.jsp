@@ -6,18 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Gawande | Portfolio</title>
-    
-    <!-- Fonts & Icons -->
+
+    <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
+
+    <!-- CSS with contextPath -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
 <body>
 
-    <!-- Include Header -->
-    <jsp:include page="${pageContext.request.contextPath}/includes/header.jsp" />
+    <!-- HEADER INCLUDE -->
+    <jsp:include page="includes/header.jsp" />
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
@@ -54,7 +54,7 @@
                         <span class="skill">HTML/CSS</span>
                         <span class="skill">Git</span>
                     </div>
-                    <a href="${pageContext.request.contextPath}/resume.jsp" class="btn" style="margin-top: 20px;">View Resume</a>
+                    <a href="resume.jsp" class="btn" style="margin-top: 20px;">View Resume</a>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 <c:forEach var="project" items="${featuredProjects}">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="${pageContext.request.contextPath}/${project.imageUrl}" alt="${project.title}">
+                            <img src="${project.imageUrl}" alt="${project.title}">
                         </div>
                         <div class="project-info">
                             <h3>${project.title}</h3>
@@ -87,7 +87,7 @@
                 </c:forEach>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <a href="${pageContext.request.contextPath}/projects.jsp" class="btn">View All Projects</a>
+                <a href="projects.jsp" class="btn">View All Projects</a>
             </div>
         </div>
     </section>
@@ -105,7 +105,7 @@
                             <i class="fas fa-envelope"></i> rohit.gawande@example.com
                         </div>
                         <div class="contact-detail">
-                            <i class="fas fa-phone"></i> +1 (123) 456-7890
+                            <i class="fas fa-phone"></i> +91 9876543210
                         </div>
                         <div class="contact-detail">
                             <i class="fas fa-map-marker-alt"></i> Mumbai, India
@@ -126,10 +126,10 @@
         </div>
     </section>
 
-    <!-- Include Footer -->
-    <jsp:include page="${pageContext.request.contextPath}/includes/footer.jsp" />
+    <!-- FOOTER INCLUDE -->
+    <jsp:include page="includes/footer.jsp" />
 
-    <!-- JS -->
+    <!-- JS with contextPath -->
     <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 </body>
 </html>
