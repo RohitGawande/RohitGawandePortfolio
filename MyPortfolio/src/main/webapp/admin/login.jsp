@@ -19,6 +19,15 @@
                 <p>Access your portfolio dashboard</p>
             </div>
             
+            <%-- Display logout success message --%>
+            <% if ("success".equals(request.getParameter("logout"))) { %>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    You have been successfully logged out.
+                </div>
+            <% } %>
+            
+            <%-- Display login error message --%>
             <% if (request.getAttribute("errorMessage") != null) { %>
                 <div class="alert alert-error">
                     <i class="fas fa-exclamation-circle"></i>

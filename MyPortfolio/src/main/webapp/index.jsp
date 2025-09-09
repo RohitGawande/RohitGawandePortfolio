@@ -306,7 +306,7 @@
         </div>
     </section>
 
-    <jsp:include page="includes/footer.jsp" />
+    <jsp:include page="includes/header.jsp" />
     
     <script>
         <%@ include file="assets/js/script.js" %>
