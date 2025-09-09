@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/portfolio_db";
-    private static final String USER = "root";
-    private static final String PASS = "password";
+    private static final String USER = "Rohit";
+    private static final String PASS = "Rohit2004";
     
     private static Connection connection = null;
 

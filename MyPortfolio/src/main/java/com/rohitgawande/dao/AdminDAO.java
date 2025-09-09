@@ -1,44 +1,54 @@
 package com.rohitgawande.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
+
 import com.rohitgawande.model.Admin;
 
 public class AdminDAO {
-    public Admin validateAdmin(String username, String password) throws SQLException {
+
+    // Validate admin credentials
+    public Optional<Admin> validateAdmin(String username, String password) {
         String query = "SELECT * FROM admins WHERE username = ?";
-        Admin admin = null;
-        
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            
+
             ps.setString(1, username);
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     String storedPassword = rs.getString("password");
-                    // In a real application, use proper password hashing like BCrypt
-                    // For demo purposes, we're using simple comparison
+
                     if (storedPassword.equals(hashPassword(password))) {
-                        admin = new Admin();
+                        Admin admin = new Admin();
                         admin.setId(rs.getInt("id"));
                         admin.setUsername(rs.getString("username"));
                         admin.setPassword(rs.getString("password"));
                         admin.setEmail(rs.getString("email"));
                         admin.setLastLogin(rs.getTimestamp("last_login"));
-                        
-                        // Update last login time
+
+                        // Update last login
                         updateLastLogin(admin.getId());
+                        return Optional.of(admin);
                     }
                 }
             }
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return admin;
+
+        return Optional.empty();
     }
-    
+
+    // Hash password using SHA-256
     private String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -52,27 +62,36 @@ public class AdminDAO {
             throw new RuntimeException("Error hashing password", e);
         }
     }
-    
-    private void updateLastLogin(int adminId) throws SQLException {
+
+    // Update last login timestamp
+    private void updateLastLogin(int adminId) {
         String query = "UPDATE admins SET last_login = NOW() WHERE id = ?";
-        
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            
+
             ps.setInt(1, adminId);
             ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    
-    public boolean changePassword(int adminId, String newPassword) throws SQLException {
+
+    // Change admin password
+    public boolean changePassword(int adminId, String newPassword) {
         String query = "UPDATE admins SET password = ? WHERE id = ?";
-        
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            
+
             ps.setString(1, hashPassword(newPassword));
             ps.setInt(2, adminId);
             return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
