@@ -6,18 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Gawande | Portfolio</title>
-
-    <!-- External Fonts and Icons -->
+    
+    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS (context-relative) -->
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
 <body>
 
-    <!-- HEADER INCLUDE -->
-    <jsp:include page="includes/header.jsp" />
+    <!-- Include Header -->
+    <jsp:include page="${pageContext.request.contextPath}/includes/header.jsp" />
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
@@ -68,7 +68,7 @@
                 <c:forEach var="project" items="${featuredProjects}">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="${pageContext.request.contextPath}/assets/images/${project.imageUrl}" alt="${project.title}">
+                            <img src="${pageContext.request.contextPath}/${project.imageUrl}" alt="${project.title}">
                         </div>
                         <div class="project-info">
                             <h3>${project.title}</h3>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="contact-form">
                     <h3>Send Me a Message</h3>
-                    <form action="${pageContext.request.contextPath}/contact" method="POST">
+                    <form action="contact" method="POST">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email" required>
                         <input type="text" name="subject" placeholder="Subject" required>
@@ -126,10 +126,10 @@
         </div>
     </section>
 
-    <!-- FOOTER INCLUDE -->
-    <jsp:include page="includes/footer.jsp" />
+    <!-- Include Footer -->
+    <jsp:include page="${pageContext.request.contextPath}/includes/footer.jsp" />
 
-    <!-- JS (context-relative) -->
+    <!-- JS -->
     <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 </body>
 </html>

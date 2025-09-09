@@ -15,28 +15,37 @@ public class ProjectServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProjectDAO projectDAO;
 
+    @Override
     public void init() {
         projectDAO = new ProjectDAO();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        
-        if (id != null) {
+        String idParam = request.getParameter("id");
+
+        if (idParam != null) {
             try {
-                Project project = projectDAO.getProjectById(Integer.parseInt(id));
+                int projectId = Integer.parseInt(idParam);
+                Project project = projectDAO.getProjectById(projectId);
+
                 if (project != null) {
                     request.setAttribute("project", project);
                     request.getRequestDispatcher("project-details.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("projects");
+                    // Project not found → redirect to all projects
+                    response.sendRedirect("projects.jsp");
                 }
-            } catch (NumberFormatException | SQLException e) {
-                response.sendRedirect("projects");
+            } catch (NumberFormatException e) {
+                // If `id` is not a valid number
+                response.sendRedirect("projects.jsp");
+            } catch (SQLException e) {
+                throw new ServletException("Database error while fetching project", e);
             }
         } else {
-            response.sendRedirect("projects");
+            // No id provided → go to projects list
+            response.sendRedirect("projects.jsp");
         }
     }
 }

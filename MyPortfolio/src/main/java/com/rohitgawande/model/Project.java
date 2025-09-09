@@ -1,6 +1,6 @@
 package com.rohitgawande.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Project {
     private int id;
@@ -10,7 +10,7 @@ public class Project {
     private String imageUrl;
     private String projectLink;
     private String githubLink;
-    private Timestamp createdAt; // changed from Date to Timestamp
+    private LocalDateTime createdAt; 
 
     // Constructors
     public Project() {}
@@ -22,7 +22,7 @@ public class Project {
         this.imageUrl = imageUrl;
         this.projectLink = projectLink;
         this.githubLink = githubLink;
-        this.createdAt = new Timestamp(System.currentTimeMillis());
+        this.createdAt = LocalDateTime.now(); // ✅ Use current time
     }
 
     // Getters and setters
@@ -47,6 +47,6 @@ public class Project {
     public String getGithubLink() { return githubLink; }
     public void setGithubLink(String githubLink) { this.githubLink = githubLink; }
 
-    public Timestamp getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
