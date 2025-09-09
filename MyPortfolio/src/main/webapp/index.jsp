@@ -6,12 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Gawande | Portfolio</title>
+
+    <!-- External Fonts and Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Correct way to include CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS (context-relative) -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
 <body>
+
+    <!-- HEADER INCLUDE -->
     <jsp:include page="includes/header.jsp" />
 
     <!-- HERO SECTION -->
@@ -34,7 +39,7 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="assets/images/profile.jpg" alt="Rohit Gawande">
+                    <img src="${pageContext.request.contextPath}/assets/images/profile.jpg" alt="Rohit Gawande">
                 </div>
                 <div class="about-text">
                     <h3>Full Stack Developer & UI/UX Enthusiast</h3>
@@ -49,7 +54,7 @@
                         <span class="skill">HTML/CSS</span>
                         <span class="skill">Git</span>
                     </div>
-                    <a href="resume.jsp" class="btn" style="margin-top: 20px;">View Resume</a>
+                    <a href="${pageContext.request.contextPath}/resume.jsp" class="btn" style="margin-top: 20px;">View Resume</a>
                 </div>
             </div>
         </div>
@@ -63,7 +68,7 @@
                 <c:forEach var="project" items="${featuredProjects}">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="${project.imageUrl}" alt="${project.title}">
+                            <img src="${pageContext.request.contextPath}/assets/images/${project.imageUrl}" alt="${project.title}">
                         </div>
                         <div class="project-info">
                             <h3>${project.title}</h3>
@@ -82,7 +87,7 @@
                 </c:forEach>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <a href="projects.jsp" class="btn">View All Projects</a>
+                <a href="${pageContext.request.contextPath}/projects.jsp" class="btn">View All Projects</a>
             </div>
         </div>
     </section>
@@ -109,7 +114,7 @@
                 </div>
                 <div class="contact-form">
                     <h3>Send Me a Message</h3>
-                    <form action="contact" method="POST">
+                    <form action="${pageContext.request.contextPath}/contact" method="POST">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email" required>
                         <input type="text" name="subject" placeholder="Subject" required>
@@ -121,9 +126,10 @@
         </div>
     </section>
 
+    <!-- FOOTER INCLUDE -->
     <jsp:include page="includes/footer.jsp" />
 
-    <!-- Correct way to include JS -->
-    <script src="assets/js/script.js"></script>
+    <!-- JS (context-relative) -->
+    <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
 </body>
 </html>
